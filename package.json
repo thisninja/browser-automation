@@ -38,7 +38,8 @@
     "eslint": "^6.4.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-import-resolver-webpack": "^0.11.1",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint-plugin-import": "^2.18.2",
+    "wdio-image-comparison-service": "latest"
   },
   "bugs": {
     "url": "https://github.com/thisninja/browser-automation/issues"
