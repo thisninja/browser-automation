@@ -1,4 +1,4 @@
-import { keys, routes, selectors } from '../lib';
+import { keys, routes, selectors, classes } from '../lib';
 
 class Base {
   get keys () {
@@ -7,6 +7,10 @@ class Base {
 
   get routes() {
     return this._routes || (this._routes = routes);
+  }
+
+  get classes() {
+    return this._classes || (this._classes = classes);
   }
 
   get selectors() {

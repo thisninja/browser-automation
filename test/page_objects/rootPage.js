@@ -1,4 +1,4 @@
-import Base from './base'
+import Base from './base';
 
 class RootPage extends Base {
   visit () {
@@ -9,6 +9,14 @@ class RootPage extends Base {
 
   expectToBeOpened () {
     browser.waitForVisible(this.selectors.widget);
+  }
+
+  expectToOpenWidget() {
+    browser.waitForVisible(this.selectors.widget);
+    $(this.selectors.toggler).click();
+
+    const classNames = $(this.selectors.toggler).getAttribute('class');
+    return classNames.includes(this.classes.openedToggler);
   }
 };
 
