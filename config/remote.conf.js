@@ -21,7 +21,9 @@ exports.config = {
   waitforTimeout: 10000,
   connectionRetryTimeout: 90000,
   connectionRetryCount: 3,
-  services: ['browserstack'],
+  services: [
+    'browserstack',
+  ],
   framework: 'jasmine',
   reporters: ['spec'],
   jasmineNodeOpts: {

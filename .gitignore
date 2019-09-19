@@ -5,6 +5,8 @@ local.log
 reports/*.json
 reports/*.xml
 errorShots/
+.tmp/
+baseline/
 reports/
 .envrc
 .env

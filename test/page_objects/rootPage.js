@@ -8,15 +8,36 @@ class RootPage extends Base {
   }
 
   expectToBeOpened () {
-    browser.waitForVisible(this.selectors.widget);
+    return ($(this.selectors.widget).waitForDisplayed());
   }
 
-  expectToOpenWidget() {
-    browser.waitForVisible(this.selectors.widget);
+  openWidget() {
+    $(this.selectors.widget).waitForDisplayed();
     $(this.selectors.toggler).click();
+  }
 
-    const classNames = $(this.selectors.toggler).getAttribute('class');
-    return classNames.includes(this.classes.openedToggler);
+  saveScreen(selector, options = {}) {
+    browser.saveScreen(this.selectors.toggler, options);
+  }
+
+  saveElement(selector, name = '', options = {}) {
+    browser.saveElement($(selector), name, options);
+  }
+
+  saveFullPageScreen(selector, options = {}) {
+    browser.saveFullPageScreen(selector, options);
+  }
+
+  checkScreen(selector, options = {}) {
+    browser.checkScreen(selector, options)
+  }
+
+  checkElement(selector, name = '', options = {}) {
+    return (browser.checkElement($(selector), name, options));
+  }
+
+  checkFullPageScreen(selector, options = {}) {
+    return (browser.checkFullPageScreen(selector, options));
   }
 };
 
