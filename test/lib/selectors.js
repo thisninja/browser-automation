@@ -5,6 +5,7 @@ const selectors = {
   menuToggler: '.dc-user-input-menu-toggler',
   speechIcon: '.main-button.speech',
   userInput: '.dc-user-input-text',
+  sendIcon: '.send-icon',
 };
 
 module.exports = selectors;

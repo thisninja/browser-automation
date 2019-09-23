@@ -37,10 +37,10 @@ class RootPage extends Base {
   sendUserMessage(byAction = false) {
     this.typeUserMessage();
     if (!byAction) {
-      return $(this.selectors.sendIcon).click();
+      browser.keys(this.keys.ENTER);
+    } else {
+      $(this.selectors.sendIcon).click();
     }
-
-    return browser.keys(this.keys.ENTER);
   }
 
   saveScreen(selector, options = {}) {
