@@ -7,13 +7,40 @@ class RootPage extends Base {
     );
   }
 
-  expectToBeOpened () {
+  expectToBeOpened() {
     return ($(this.selectors.widget).waitForDisplayed());
   }
 
   openWidget() {
     $(this.selectors.widget).waitForDisplayed();
     $(this.selectors.toggler).click();
+  }
+
+  openMenu() {
+    $(this.selectors.menuToggler).waitForDisplayed();
+    $(this.selectors.menuToggler).click();
+  }
+
+  setUserInputFocus() {
+    $(this.selectors.userInput).waitForDisplayed();
+    $(this.selectors.userInput).click();
+  }
+
+  isFocused() {
+    return ($(this.selectors.userInput).isFocused());
+  }
+
+  typeUserMessage() {
+    $(this.selectors.userInput).setValue('Test Text');
+  }
+
+  sendUserMessage(byAction = false) {
+    this.typeUserMessage();
+    if (!byAction) {
+      return $(this.selectors.sendIcon).click();
+    }
+
+    return browser.keys(this.keys.ENTER);
   }
 
   saveScreen(selector, options = {}) {

@@ -1,5 +1,5 @@
 const keys = {
-  ENTER: '\uE006',
+  ENTER: '\uE007',
 };
 
 module.exports = keys;
