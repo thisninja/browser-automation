@@ -119,7 +119,7 @@ describe('rootPage', () => {
           expect($(this.selectors.userInput).getValue()).toEqual('');
         });
 
-        describe('user message sent', () => {
+        xdescribe('user message sent', () => {
           it('displays latest user message', () => {
             expect(rootPage.selectLastUserMessage()).toEqual('Test Text');
           });
@@ -131,7 +131,7 @@ describe('rootPage', () => {
       });
     });
 
-    describe('contact an agent', () => {
+    xdescribe('contact an agent', () => {
       beforeAll(() => {
         rootPage.triggerContactAgent();
       });
