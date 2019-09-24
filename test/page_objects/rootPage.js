@@ -30,6 +30,25 @@ class RootPage extends Base {
     return ($(this.selectors.userInput).isFocused());
   }
 
+  triggerContactAgent() {
+    $(this.selectors.contactAgent).waitForDisplayed();
+    $(this.selectors.contactAgent).click();
+  }
+
+  selectLastUserMessage() {
+    const $messageList = $$(this.selectors.messageList)[0];
+    const $messageSent = $$(this.selectors.messageSentSelector);
+    const text = $messageList.$messageSent[$messageSent.length - 1].$('span').getText();
+    return text;
+  }
+
+  selectLastServerReply() {
+    const $messageList = $$(this.selectors.messageList)[0];
+    const $messageReceived = $$(this.selectors.messageReceivedSelector);
+    const text = $messageList.$messageReceived[$messageReceived.length - 1].$('span').getText();
+    return text;
+  }
+
   typeUserMessage() {
     $(this.selectors.userInput).setValue('Test Text');
   }

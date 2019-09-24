@@ -76,12 +76,18 @@ describe('rootPage', () => {
         expect(rootPage.isFocused()).toBeTruthy();
       });
 
-      it('should save userInput snapshot', () => {
+      xit('should save userInput snapshot', () => {
+        // disabled since it produces a flaky test
+        // since textarea cursor when focused in blinking
+        // and thus it fails sometimes with 0.07 diff
         rootPage.saveElement(selectors.userInput, 'widgetUserInputFocused');
         rootPage.saveFullPageScreen(`${selectors.userInput}-focused`, {});
       });
 
-      it('should compare snapshot successfully with a baseline', () => {
+      xit('should compare snapshot successfully with a baseline', () => {
+        // disabled since it produces a flaky test
+        // since textarea cursor when focused in blinking
+        // and thus it fails sometimes with 0.07 diff
         expect(rootPage.checkElement(selectors.userInput, 'widgetUserInputFocused')).toEqual(0);
         expect(rootPage.checkFullPageScreen(`${selectors.userInput}-focused`, {})).toEqual(0);
       });
@@ -108,6 +114,49 @@ describe('rootPage', () => {
         it('should sent user message by clicking on send-icon', () => {
           rootPage.sendUserMessage(true);
         });
+
+        afterAll(() => {
+          expect($(this.selectors.userInput).getValue()).toEqual('');
+        });
+
+        describe('user message sent', () => {
+          it('displays latest user message', () => {
+            expect(rootPage.selectLastUserMessage()).toEqual('Test Text');
+          });
+
+          it('displays latest server reply', () => {
+            expect(rootPage.selectLastServerReply()).not.toEqual('');
+          });
+        });
+      });
+    });
+
+    describe('contact an agent', () => {
+      beforeAll(() => {
+        rootPage.triggerContactAgent();
+      });
+
+      it('should display user message with text "Contact un agent"', () => {
+        expect(rootPage.selectLastUserMessage()).toEqual('Contact un agent');
+      });
+
+      it('should display initial server zendesk message', () => {
+        expect(rootPage.selectBeforeLastServerReply()).toEqual(`C'est parti`);
+        expect(rootPage.selectLastServerReply()).toEqual(`mon kiki !`);
+      });
+
+      it('should display delivery status label', () => {
+        rootPage.sendUserMessage();
+      });
+
+      it('should save delivery status snapshot', () => {
+        rootPage.saveElement(selectors.notFailureDeliveryStatus, 'widgetMessageNotFailureDeliveryStatus');
+        rootPage.saveFullPageScreen(`${selectors.notFailureDeliveryStatus}`, {});
+      });
+
+      it('should compare snapshot successfully with a baseline', () => {
+        expect(rootPage.checkElement(selectors.notFailureDeliveryStatus, 'widgetMessageNotFailureDeliveryStatus')).toEqual(0);
+        expect(rootPage.checkFullPageScreen(`${selectors.notFailureDeliveryStatus}`, {})).toEqual(0);
       });
     });
   });
